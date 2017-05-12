@@ -1,0 +1,75 @@
+" runtime! debian.vim
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
+au FileType rust compiler cargo
+
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_confirm_extra_conf=0 " Stop asking loading ycm file.
+" If found no .ycm_extra_conf.py
+let g:ycm_global_ycm_extra_conf = "~/.ycm_extra_conf.py"
+" Go to implementation.
+nnoremap <Leader>jd :YcmCompleter GoTo<CR>
+" Show doc in preview.
+nnoremap <Leader>jp :YcmCompleter GetDoc<CR>
+" Go to incldue.
+nnoremap <Leader>ji :YcmCompleter GoToInclude<CR>
+" Get Type.
+nnoremap <Leader>jt :YcmCompleter GetType<CR>
+" Get paraent
+nnoremap <Leader>jgp :YcmCompleter GetParent<CR>
+" Goto Definition
+nnoremap <Leader>jc :YcmCompleter GoToDeclaration<CR>
+
+let g:ycm_rust_src_path = "$HOME/src/rust-lang/src/"
+
+" :FixWhitespace
+Plugin 'trailing-whitespace'
+
+Plugin 'minibufexplorerpp'
+
+" :A switches to the header file
+Plugin 'A.vim'
+
+Plugin 'IndexedSearch'
+
+Plugin 'mileszs/ack.vim'
+let g:ackprg = 'ag --column --nocolor --nogroup'
+
+" Plugin 'airblade/vim-gitgutter'
+" let g:gitgutter_highlight_lines = 1
+" nmap ]h <Plug>GitGutterNextHunk
+" nmap [h <Plug>GitGutterPrevHunk
+" nmap <Leader>gp <Plug>GitGutterPrevHunk
+" nmap <Leader>gn <Plug>GitGutterNextHunk
+" nmap <Leader>gs <Plug>GitGutterStageHunk
+" nmap <Leader>gr <Plug>GitGutterRevertHunk
+" let g:gitgutter_escape_grep = 1
+" let g:gitgutter_realtime = 0 " Don't show the difference everytime I hit the keyboard.
+
+Plugin 'Lokaltog/vim-powerline'
+let g:Powerline_colorscheme='solarized256'
+let g:Powerline_sysbols='fancy'
+let g:Powerline_stl_path_style="short"
+
+Plugin 'tagbar'
+nmap <F11> :TagbarToggle<CR>
+
+" Plugin 'scrooloose/syntastic'
+
+" Plugin 'SirVer/ultisnips'
+
+Plugin 'wiki.vim'
+
+call vundle#end()
+
+filetype plugin indent on
+syntax on
